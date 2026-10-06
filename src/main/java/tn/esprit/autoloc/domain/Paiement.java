@@ -26,4 +26,6 @@ public class Paiement {
 
     @Enumerated(EnumType.STRING)
     ModePaiement modePaiement;
+    @ManyToOne
+    Contrat c;
 }

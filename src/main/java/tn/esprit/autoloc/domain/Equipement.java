@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -17,4 +19,6 @@ public class Equipement {
     long id;
 
     String libelle;
+    @ManyToMany(mappedBy = "equipements")
+    List<Vehicule> vehicules;
 }

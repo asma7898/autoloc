@@ -7,6 +7,8 @@ import lombok.Setter;
 import tn.esprit.autoloc.domain.CategorieVehicule;
 import tn.esprit.autoloc.domain.StatutVehicule;
 import java.math.BigDecimal;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -24,4 +26,12 @@ public class Vehicule {
     BigDecimal tarifJournalier;
     @Enumerated(EnumType.STRING)
     StatutVehicule statut;
+    @ManyToMany(fetch=FetchType.EAGER)
+    List<Equipement> equipements;
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name = "agence_id")
+    Agence agence;
+    @OneToMany(mappedBy = "vehicule",fetch = FetchType.LAZY)
+    List<Reservation> reservations;
+
 }
