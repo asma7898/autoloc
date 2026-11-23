@@ -23,6 +23,7 @@ public class Employe {
 
     @Enumerated(EnumType.STRING)
     Role role;
+    @JsonIgnoreProperties("vehicules")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "agence_id")
     private Agence agence;

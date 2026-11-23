@@ -29,7 +29,7 @@ public class Agence {
     @JsonIgnore
     @OneToMany(mappedBy = "agence", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Employe> employes = new ArrayList<>();
-    @JsonIgnore
+    @JsonIgnoreProperties("agence")
     @OneToMany(mappedBy = "agence", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Vehicule> vehicules = new ArrayList<>();
 

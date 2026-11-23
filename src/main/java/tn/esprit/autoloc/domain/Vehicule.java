@@ -9,6 +9,7 @@ import lombok.Setter;
 import tn.esprit.autoloc.domain.CategorieVehicule;
 import tn.esprit.autoloc.domain.StatutVehicule;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,7 +31,8 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     StatutVehicule statut;
     @ManyToMany(fetch=FetchType.EAGER)
-    List<Equipement> equipements;
+    List<Equipement> equipements = new ArrayList<>();
+    @JsonIgnoreProperties("vehicules")
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "agence_id")
     Agence agence;
