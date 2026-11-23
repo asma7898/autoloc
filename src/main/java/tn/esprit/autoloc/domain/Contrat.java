@@ -1,5 +1,7 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,13 +22,14 @@ import java.util.List;
 public class Contrat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    Long id;
 
     LocalDate dateSignature;
     BigDecimal montantTotal;
-    boolean valide;
+    Boolean valide;
     @OneToOne
     Reservation reservation;
+    @JsonIgnore
     @OneToMany(mappedBy = "c",cascade = CascadeType.ALL)
     List<Paiement> p_list= new ArrayList<>();
 }

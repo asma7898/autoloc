@@ -1,5 +1,7 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +12,7 @@ import tn.esprit.autoloc.domain.StatutReservation;
 import java.time.LocalDate;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,13 +20,14 @@ import java.time.LocalDate;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    Long id;
 
     LocalDate dateDebut;
     LocalDate dateFin;
 
     @Enumerated(EnumType.STRING)
     StatutReservation statut;
+    @JsonIgnore
     @OneToOne(mappedBy = "reservation")
     Contrat contrat;
     @ManyToOne(fetch = FetchType.LAZY)

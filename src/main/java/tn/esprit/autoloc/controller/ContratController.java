@@ -1,4 +1,4 @@
-package tn.esprit.autolocapi.controller;
+package tn.esprit.autoloc.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
